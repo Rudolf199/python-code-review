@@ -1,4 +1,6 @@
 from constants import *
+from buttons import Work, AutoMoney, Upgrade
+
 
 pygame.init()
 pygame.font.init()
@@ -25,39 +27,19 @@ def autominer():
     score = score + income
 
 
-def draw(Type, text, y, color, money):
-    global a, b, c, d, e
-    if money is True:
-        a = 42
-        b = 1
-        c = 90
-        d = 95
-        e = 98
-    else:
-        a = 1030
-        b = 990
-        c = 720
-        d = 725
-        e = 728
-    pygame.draw.circle(win, color, (a, y), 40, 1)
-    win.blit(Type, (b, y - 40))
-    pygame.draw.rect(win, color, [c, y - 15, 270, 30])
-    pygame.draw.rect(win, BLACK, [d, y - 10, 260, 20])
-    txt = font.render(text, True, WHITE)
-    win.blit(txt, (e, y - 15))
-
+Tesla = AutoMoney(TESLA, 42, 400, 35, WHITE, LIGHT, 35, 37, 10, "Elecric cars ", 400)
+Cookie = Work(USA, 540, 300, 145, LIME, DARK_GREEN, 145, 177, 10)
+Army = Upgrade(ARMY, 1030, 100, 35, OLIVE, LIGHT_OLIVE, 35, 37, 10, "Army sales ", 200)
+Tech = AutoMoney(TECH, 42, 100, 35, ORANGE, LIGHT_ORANGE, 35, 37, 10, "Invest in IT ", 50)
+Dollar = AutoMoney(DOLLAR, 42, 250, 35, LIGHT, GREEN, 35, 37, 10, "Dollar expansion", 100)
+Nato = Upgrade(DEMO, 1030, 250, 35, DARK_BLUE, BLUE, 35, 37, 10, "Democracy ", 600)
+Sanction = Upgrade(SANC, 1030, 400, 35, OLIVE, LIGHT_RED, 35, 37, 10, "Sanctions ", 300)
 
 def main():
     click = 1
-    cost1 = 50
-    cost2 = 100
-    cost3 = 150
-    cost4 = 200
-    cost5 = 250
-    cost6 = 300
+
     global score, autech, autodollar, autotesla, income, Capitalist
-    win.blit(BG, (0, 0))
-    win.blit(USA, (360, 100))
+    # тут будет анимация
     run = True
     while run:
         print("score", score)
@@ -69,62 +51,80 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     Tsound.play()
+                    Cookie.pressed = True
                     score += click
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x1 = pygame.mouse.get_pos()[0]
                 y1 = pygame.mouse.get_pos()[1]
-                if x1 >= 395 and x1 <= 700 and y1 >= 200 and y1 <= 365:
+                if x1 >= Cookie.x - Cookie.radius and x1 <= Cookie.x + Cookie.radius and y1 >= Cookie.y - Cookie.radius and y1 <= Cookie.y + Cookie.radius:
                     Tsound.play()
                     score += click
-                if x1 >= 2 and x1 <= 42 and y1 >= 60 and y1 <= 140:
+                if x1 >= Tech.x - Tech.radius and x1 <= Tech.x + Tech.radius and y1 >= Tech.y - Tech.radius and y1 <= Tech.y + Tech.radius:
                     print(x1, y1)
-                    if score >= cost1:
+                    if score >= Tech.cost:
                         Csound.play()
-                        score -= cost1
-                        cost1 *= 1.5
+                        Tech.buy = True
+                        score -= Tech.cost
+                        Tech.cost *= 1.5
                         autech += 0.5
-                        cost1 = round(cost1, 0)
-
-                if x1 >= 2 and x1 <= 42 and y1 >= 210 and y1 <= 290:
+                        Tech.cost = round(Tech.cost, 0)
+                    else:
+                        Tech.buy = False
+                if x1 >= Dollar.x - Dollar.radius and x1 <= Dollar.x + Dollar.radius and y1 >= Dollar.y - Dollar.radius and y1 <= Dollar.y + Dollar.radius:
                     print(x1, y1)
-                    if score >= cost2:
+                    if score >= Dollar.cost:
                         Dsound.play()
-                        score -= cost2
-                        cost2 *= 2
+                        Dollar.buy = True
+                        score -= Dollar.cost
+                        Dollar.cost *= 2
                         autodollar += 2
-                        cost2 = round(cost2, 0)
-                if x1 >= 2 and x1 <= 42 and y1 >= 360 and y1 <= 440:
+                        Dollar.cost = round(Dollar.cost, 0)
+                    else:
+                        Dollar.buy = False
+                if x1 >= Tesla.x - Tesla.radius and x1 <= Tesla.x + Tesla.radius and y1 >= Tesla.y - Tesla.radius and y1 <= Tesla.y + Tesla.radius:
                     print(x1, y1)
-                    if score >= cost3:
+                    if score >= Tesla.cost:
                         Csound.play()
-                        score -= cost3
-                        cost3 *= 3
+                        Tesla.buy = True
+                        score -= Tesla.cost
+                        Tesla.cost *= 3
                         autotesla += 5
-                        cost3 = round(cost3, 0)
-                if x1 >= 990 and x1 <= 1070 and y1 >= 60 and y1 <= 140:
+                        Tesla.cost = round(Tesla.cost, 0)
+                    else:
+                        Tesla.buy = False
+                if x1 >= Army.x - Army.radius and x1 <= Army.x + Army.radius and y1 >= Army.y - Army.radius and y1 <= Army.y + Army.radius:
                     print(x1, y1)
-                    if score >= cost4:
+                    if score >= Army.cost:
                         Asound.play()
-                        score -= cost4
-                        cost4 *= 4
+                        Army.buy = True
+                        score -= Army.cost
+                        Army.cost *= 4
                         click *= 1.2
-                        cost4 = round(cost4, 0)
-                if x1 >= 990 and x1 <= 1070 and y1 >= 210 and y1 <= 290:
+                        Army.cost = round(Army.cost, 0)
+                    else:
+                        Army.buy = False
+                if x1 >= Nato.x - Nato.radius and x1 <= Nato.x + Nato.radius and y1 >= Nato.y - Nato.radius and y1 <= Nato.y + Nato.radius:
                     print(x1, y1)
-                    if score >= cost5:
-                        Jsound.play()
-                        score -= cost5
-                        cost5 *= 7
-                        click *= 2
-                        cost5 = round(cost5, 0)
-                if x1 >= 990 and x1 <= 1070 and y1 >= 360 and y1 <= 440:
-                    print(x1, y1)
-                    if score >= cost6:
+                    if score >= Nato.cost:
                         Nsound.play()
-                        score -= cost6
-                        cost6 *= 10
+                        Nato.buy = True
+                        score -= Nato.cost
+                        Nato.cost *= 7
+                        click *= 2
+                        Nato.cost = round(Nato.cost, 0)
+                    else:
+                        Nato.buy = False
+                if x1 >= Sanction.x - Sanction.radius and x1 <= Sanction.x + Sanction.radius and y1 >= Sanction.y - Sanction.radius and y1 <= Sanction.y + Sanction.radius:
+                    print(x1, y1)
+                    if score >= Sanction.cost:
+                        Jsound.play()
+                        Sanction.buy = True
+                        score -= Sanction.cost
+                        Sanction.cost *= 10
                         click *= 5
-                        cost6 = round(cost6, 0)
+                        Sanction.cost = round(Sanction.cost, 0)
+                    else:
+                        Sanction.buy = False
             if income > 10:
                 if income > 100:
                     if income > 1000:
@@ -138,12 +138,14 @@ def main():
             if score >= 1000000000000000000000000000 and Capitalist >= 5:
                 drawtext("America is proud of you!!!", WHITE, RED, 400, 200, 50)
                 pygame.display.update()
-        draw(TECH, "Invest in IT " + '(' + str(f'{cost1:.2f}') + " $" + ')', 100, BLUE, True)
-        draw(DOLLAR, "Dollar expansion " + '(' + str(f'{cost2:.2f}') + " $" + ')', 250, GREEN, True)
-        draw(TESLA, "Electric cars " + '(' + str(f'{cost3:.2f}') + " $" + ')', 400, GREY, True)
-        draw(ARMY, "Army " + '(' + str(f'{cost4:.2f}') + " $" + ')', 100, RED, False)
-        draw(SANC, "Sanctions " + '(' + str(f'{cost5:.2f}') + " $" + ')', 250, OLIVE, False)
-        draw(DEMO, "Democracy " + '(' + str(f'{cost6:.2f}') + " $" + ')', 400, WHITE, False)
+        win.blit(BG, (0, 0))
+        Cookie.draw(win)
+        Dollar.draw(win, Dollar.cost)
+        Tesla.draw(win, Tesla.cost)
+        Army.draw(win, Army.cost)
+        Tech.draw(win, Tech.cost)
+        Nato.draw(win, Nato.cost)
+        Sanction.draw(win, Sanction.cost)
         drawtext("Money " + str(f'{score:.2f}') + " $", WHITE, GREEN, 400, 600, 30)
         drawtext("Income " + str(f'{income:.2f}') + " $", WHITE, BLUE, 800, 600, 30)
         drawtext("Working power " + str(f'{click:.2f}') + " $", WHITE, LIGHT, 800, 670, 30)
@@ -151,7 +153,6 @@ def main():
         drawtext("Click or press Space to work", BLUE, WHITE, 500, 500, 30)
         pygame.display.update()
     pygame.quit()
-
 
 main()
 
