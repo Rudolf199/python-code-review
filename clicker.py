@@ -1,9 +1,15 @@
 from constants import *
 from buttons import Work, AutoMoney, Upgrade
+from saver import Saver
+import os
 
 
 pygame.init()
 pygame.font.init()
+print("Enter your nickname: ")
+nick = str(input())
+save = Saver(".save", "users", nick)
+print(os.path.dirname("users"))
 win = pygame.display.set_mode([1080, 720])
 pygame.display.set_caption('Capitalist 1.0')
 font = pygame.font.SysFont("comicsans", 19)
@@ -35,18 +41,24 @@ Dollar = AutoMoney(DOLLAR, 42, 250, 35, LIGHT, GREEN, 35, 37, 10, "Dollar expans
 Nato = Upgrade(DEMO, 1030, 250, 35, DARK_BLUE, BLUE, 35, 37, 10, "Democracy ", 600)
 Sanction = Upgrade(SANC, 1030, 400, 35, OLIVE, LIGHT_RED, 35, 37, 10, "Sanctions ", 300)
 
-def main():
-    click = 1
 
+def main():
+    # click = 1
     global score, autech, autodollar, autotesla, income, Capitalist
+    income, autech, autodollar, autotesla, click, Capitalist, \
+    score = save.load_game_data([nick + "income", nick + "autech", nick + "autodollar", nick + "autotesla", nick + "click", nick + "LVL", nick + "score"],
+                                                                                          [0, 0, 0, 0, 1, 0, 0])
+    print(income, click, Capitalist, score)
     # тут будет анимация
     run = True
     while run:
-        print("score", score)
+        # print("score", score)
         if run:
             autominer()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                save.save_game_data([income, autech, autodollar, autotesla, click, Capitalist, score],
+                                    [nick + "income", nick + "autech", nick + "autodollar", nick + "autotesla", nick + "click", nick + "LVL", nick + "score"])
                 run = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
@@ -60,7 +72,7 @@ def main():
                     Tsound.play()
                     score += click
                 if x1 >= Tech.x - Tech.radius and x1 <= Tech.x + Tech.radius and y1 >= Tech.y - Tech.radius and y1 <= Tech.y + Tech.radius:
-                    print(x1, y1)
+                    #print(x1, y1)
                     if score >= Tech.cost:
                         Csound.play()
                         Tech.buy = True
@@ -71,7 +83,7 @@ def main():
                     else:
                         Tech.buy = False
                 if x1 >= Dollar.x - Dollar.radius and x1 <= Dollar.x + Dollar.radius and y1 >= Dollar.y - Dollar.radius and y1 <= Dollar.y + Dollar.radius:
-                    print(x1, y1)
+                    # print(x1, y1)
                     if score >= Dollar.cost:
                         Dsound.play()
                         Dollar.buy = True
@@ -82,7 +94,7 @@ def main():
                     else:
                         Dollar.buy = False
                 if x1 >= Tesla.x - Tesla.radius and x1 <= Tesla.x + Tesla.radius and y1 >= Tesla.y - Tesla.radius and y1 <= Tesla.y + Tesla.radius:
-                    print(x1, y1)
+                    # print(x1, y1)
                     if score >= Tesla.cost:
                         Csound.play()
                         Tesla.buy = True
@@ -93,7 +105,7 @@ def main():
                     else:
                         Tesla.buy = False
                 if x1 >= Army.x - Army.radius and x1 <= Army.x + Army.radius and y1 >= Army.y - Army.radius and y1 <= Army.y + Army.radius:
-                    print(x1, y1)
+                    # print(x1, y1)
                     if score >= Army.cost:
                         Asound.play()
                         Army.buy = True
@@ -104,7 +116,7 @@ def main():
                     else:
                         Army.buy = False
                 if x1 >= Nato.x - Nato.radius and x1 <= Nato.x + Nato.radius and y1 >= Nato.y - Nato.radius and y1 <= Nato.y + Nato.radius:
-                    print(x1, y1)
+                    # print(x1, y1)
                     if score >= Nato.cost:
                         Nsound.play()
                         Nato.buy = True
@@ -115,7 +127,7 @@ def main():
                     else:
                         Nato.buy = False
                 if x1 >= Sanction.x - Sanction.radius and x1 <= Sanction.x + Sanction.radius and y1 >= Sanction.y - Sanction.radius and y1 <= Sanction.y + Sanction.radius:
-                    print(x1, y1)
+                    # print(x1, y1)
                     if score >= Sanction.cost:
                         Jsound.play()
                         Sanction.buy = True
@@ -151,8 +163,9 @@ def main():
         drawtext("Working power " + str(f'{click:.2f}') + " $", WHITE, LIGHT, 800, 670, 30)
         drawtext("Capitalism LVL " + str(f'{Capitalist}'), WHITE, BLACK, 400, 670, 30)
         drawtext("Click or press Space to work", BLUE, WHITE, 500, 500, 30)
+        drawtext("Player " + nick, GREY, WHITE, 800, 20, 15)
         pygame.display.update()
     pygame.quit()
 
-main()
 
+main()

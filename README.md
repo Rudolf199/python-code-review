@@ -58,7 +58,10 @@ $ git clone https://username@bitbucket.org/teamsinspace/documentation-tests.git
 
 
       $python3 clicker.py
+      
+      after type your nickname in terminal and start playing
 ```
+**❗Game has saving system, so you can find your progress data in users folder**
 
 
 ------

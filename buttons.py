@@ -1,6 +1,7 @@
 import pygame
-from constants import USA, WHITE, GREY, RED, TESLA, BLUE, BLACK, DOLLAR, ORANGE, ARMY
+from constants import BLACK, ORANGE
 font = pygame.font.SysFont("comicsans", 20)
+
 
 class Button:
 
@@ -28,13 +29,14 @@ class Button:
     def clicked(self):
         m = pygame.mouse.get_pos()[0]
         n = pygame.mouse.get_pos()[1]
-        if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and n <= self.y + self.radius:
+        if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and \
+                n <= self.y + self.radius:
             self.color = self.color2
             if pygame.mouse.get_pressed()[0]:
                 self.pressed = True
             else:
                 if self.pressed is True:
-                    print("pressed")
+                    # print("pressed")
                     self.pressed = False
         else:
             self.color = self.color1
@@ -45,16 +47,17 @@ class Work(Button):
     def clicked(self):
         m = pygame.mouse.get_pos()[0]
         n = pygame.mouse.get_pos()[1]
-        if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and n <= self.y + self.radius:
+        if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and \
+                n <= self.y + self.radius:
             self.color = self.color2
             if pygame.mouse.get_pressed()[0]:
                 self.pressed = True
             else:
-                if self.pressed == True:
-                    print("pressed 1")
+                if self.pressed is True:
+                    # print("pressed 1")
                     self.pressed = False
         elif self.pressed is True:
-            print("pressed 1")
+            # print("pressed 1")
             self.pressed = False
         else:
             self.color = self.color1
@@ -64,7 +67,7 @@ class AutoMoney(Button):
 
     def __init__(self, picture, x, y, radius, color1, color2, deltax, deltay, dinamic, text, cost):
         self.picture = picture
-        self.x = x # координаты центров кругов
+        self.x = x  # координаты центров кругов
         self.y = y
         self.radius = radius
         self.pressed = False
@@ -83,7 +86,7 @@ class AutoMoney(Button):
         txt = font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, ORANGE)
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
         pygame.draw.rect(win, self.color,
-                         [self.x + self.radius + 20, self.y - self.radius,   txt.get_width() + 15, txt.get_height() + 20])
+                         [self.x + self.radius + 20, self.y - self.radius, txt.get_width() + 15, txt.get_height() + 20])
         pygame.draw.rect(win, BLACK,
                          [self.x + self.radius + 25, self.y - self.radius + 5, txt.get_width() + 7, txt.get_height() + 10])
         win.blit(txt, (self.x + self.radius + 30, self.y - 30))
@@ -96,13 +99,14 @@ class AutoMoney(Button):
     def clicked(self):
         m = pygame.mouse.get_pos()[0]
         n = pygame.mouse.get_pos()[1]
-        if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and n <= self.y + self.radius:
+        if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and \
+                n <= self.y + self.radius:
             self.color = self.color2
             if pygame.mouse.get_pressed()[0] and self.buy:
                 self.pressed = True
             else:
                 if self.pressed is True:
-                    print("pressed")
+                    # print("pressed")
                     self.pressed = False
         else:
             self.color = self.color1
@@ -123,4 +127,3 @@ class Upgrade(AutoMoney):
         else:
             win.blit(self.picture, (self.x - 1.3 * self.deltax, self.y - self.dinamic))
         self.clicked()
-
