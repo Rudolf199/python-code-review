@@ -1,5 +1,5 @@
 import pygame
-from constants import BLACK, ORANGE
+from consts import BLACK, ORANGE
 font = pygame.font.SysFont("comicsans", 20)
 
 
@@ -88,7 +88,8 @@ class AutoMoney(Button):
         pygame.draw.rect(win, self.color,
                          [self.x + self.radius + 20, self.y - self.radius, txt.get_width() + 15, txt.get_height() + 20])
         pygame.draw.rect(win, BLACK,
-                         [self.x + self.radius + 25, self.y - self.radius + 5, txt.get_width() + 7, txt.get_height() + 10])
+                         [self.x + self.radius + 25, self.y - self.radius + 5,
+                          txt.get_width() + 7, txt.get_height() + 10])
         win.blit(txt, (self.x + self.radius + 30, self.y - 30))
         if self.pressed:
             win.blit(self.picture, (self.x - self.deltax, self.y - self.deltay))
@@ -111,6 +112,7 @@ class AutoMoney(Button):
         else:
             self.color = self.color1
 
+
 class Upgrade(AutoMoney):
 
     def draw(self, win, price):
@@ -118,9 +120,11 @@ class Upgrade(AutoMoney):
         txt = font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, ORANGE)
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
         pygame.draw.rect(win, self.color,
-                         [self.x - self.radius - 35 - txt.get_width(), self.y - self.radius, txt.get_width() + 15, txt.get_height() + 20])
+                         [self.x - self.radius - 35 - txt.get_width(), self.y - self.radius, txt.get_width() + 15,
+                          txt.get_height() + 20])
         pygame.draw.rect(win, BLACK,
-                         [self.x - self.radius - 30 - txt.get_width(), self.y - self.radius + 5, txt.get_width() + 7, txt.get_height() + 10])
+                         [self.x - self.radius - 30 - txt.get_width(), self.y - self.radius + 5, txt.get_width() + 7,
+                          txt.get_height() + 10])
         win.blit(txt, (self.x - self.radius - 30 - txt.get_width(), self.y - 30))
         if self.pressed:
             win.blit(self.picture, (self.x - self.deltax, self.y - self.deltay))

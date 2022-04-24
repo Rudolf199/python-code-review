@@ -41,13 +41,17 @@ $ git clone https://username@bitbucket.org/teamsinspace/documentation-tests.git
 
 ```
 🟢step 2) you should install python3 and pip3 command
+  $sudo apt update
+  $sudo apt install python3-pip
 ```
+
 ![pip.png](images/pip.png)
 
 -------
 ###
 ```
 🟢step 3) now to build the project you need to insall pygame module
+            $python3 -m pip install -U pygame --user
 ```
 ![pygame.png](images/pygameinst.png)
 
@@ -72,3 +76,9 @@ $ git clone https://username@bitbucket.org/teamsinspace/documentation-tests.git
 📱 Let me know if you are having problems
 
 ![tg.png](images/tg.png) [here](https://t.me/Roudolf)
+
+
+
+
+
+#Class documentation
