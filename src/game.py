@@ -7,27 +7,27 @@ import time
 
 class Game:
 
-
     def __init__(self, nick):
         self.font = pygame.font.SysFont("comicsans", consts.mainfont)
         self.win = pygame.display.set_mode([consts.WIDTH, consts.HEIGHT])
         self.Army = Upgrade(consts.ARMY, consts.RIGHT, consts.fh, consts.sr, consts.OLIVE,
-               consts.LIGHT_OLIVE, consts.sr, consts.sd, consts.din, "Army sales ", consts.arp)
+                            consts.LIGHT_OLIVE, consts.sr, consts.sd, consts.din, "Army sales ", consts.arp)
         # global autech, autodollar, autotesla, income
         self.Tech = AutoMoney(consts.TECH, consts.LEFT, consts.fh, consts.sr,
-                         consts.ORANGE, consts.LIGHT_ORANGE, consts.sr, consts.sd, consts.din, "Invest in IT ",
-                         consts.itp)
+                              consts.ORANGE, consts.LIGHT_ORANGE, consts.sr, consts.sd, consts.din, "Invest in IT ",
+                              consts.itp)
         self.Dollar = AutoMoney(consts.DOLLAR, consts.LEFT, consts.sh, consts.sr,
-                           consts.LIGHT, consts.GREEN, consts.sr, consts.sd, consts.din, "Dollar expansion", consts.dp)
+                                consts.LIGHT, consts.GREEN, consts.sr, consts.sd,
+                                consts.din, "Dollar expansion", consts.dp)
         self.Nato = Upgrade(consts.DEMO, consts.RIGHT, consts.sh,
-                       consts.sr, consts.DARK_BLUE, consts.BLUE, consts.sr, consts.sd, consts.din, "Democracy ",
-                       consts.dmp)
+                            consts.sr, consts.DARK_BLUE, consts.BLUE, consts.sr, consts.sd, consts.din, "Democracy ",
+                            consts.dmp)
         self.Tesla = AutoMoney(consts.TESLA, consts.LEFT, consts.th, consts.sr, consts.WHITE,
-                          consts.LIGHT, consts.sr, consts.sd, consts.din, "Elecric cars ", consts.ep)
+                               consts.LIGHT, consts.sr, consts.sd, consts.din, "Elecric cars ", consts.ep)
         self.Sanction = Upgrade(consts.SANC, consts.RIGHT, consts.th, consts.sr, consts.OLIVE,
-                           consts.LIGHT_RED, consts.sr, consts.sd, consts.din, "Sanctions ", consts.sp)
+                                consts.LIGHT_RED, consts.sr, consts.sd, consts.din, "Sanctions ", consts.sp)
         self.Cookie = Work(consts.USA, consts.MIDDLE, consts.mh, consts.br,
-                      consts.LIME, consts.DARK_GREEN, consts.br, consts.bd, consts.din)
+                           consts.LIME, consts.DARK_GREEN, consts.br, consts.bd, consts.din)
         self.game_over = False
         # Create the player
         self.player = Saver(".txt", "users", nick)
@@ -86,8 +86,9 @@ class Game:
                     # for collector, a, o, c, s in self.autos, consts.ins, consts.ovs, colls, consts.sounds_1:
                     '''
                     for i in range(3):
-                        if x1 >= self.autos[i].x - self.autos[i].radius and x1 <= self.autos[i].x + self.autos[i].radius and \
-                                y1 >= self.autos[i].y - self.autos[i].radius and y1 <= self.autos[i].y + self.autos[i].radius:
+                        if x1 >= self.autos[i].x - self.autos[i].radius and x1 <= self.autos[i].x + self.autos[i].radius 
+                        and y1 >= self.autos[i].y - self.autos[i].radius and y1 <= self.autos[i].y + 
+                        self.autos[i].radius:
                             # print(x1, y1)
                             if self.score >= self.autos[i].cost:
                                 consts.sounds_1[i].play()
@@ -108,8 +109,8 @@ class Game:
                             consts.Csound.play()
                             self.Tech.buy = True
                             self.score -= self.Tech.cost
-                            self.Tech.cost *= 1.5
-                            self.autech += 0.5
+                            self.Tech.cost *= consts.oi1
+                            self.autech += consts.i1
                             self.Tech.cost = round(self.Tech.cost, 0)
                         else:
                             self.Tech.buy = False
@@ -120,56 +121,60 @@ class Game:
                             consts.Dsound.play()
                             self.Dollar.buy = True
                             self.score -= self.Dollar.cost
-                            self.Dollar.cost *= 2
-                            self.autodollar += 2
+                            self.Dollar.cost *= consts.oi2
+                            self.autodollar += consts.i2
                             self.Dollar.cost = round(self.Dollar.cost, 0)
                         else:
                             self.Dollar.buy = False
-                    if x1 >= self.Tesla.x - self.Tesla.radius and x1 <= self.Tesla.x + self.Tesla.radius and y1 >= self.Tesla.y - self.Tesla.radius and\
+                    if x1 >= self.Tesla.x - self.Tesla.radius and x1 <= self.Tesla.x + self.Tesla.radius \
+                            and y1 >= self.Tesla.y - self.Tesla.radius and\
                             y1 <= self.Tesla.y + self.Tesla.radius:
                         # print(x1, y1)
                         if self.score >= self.Tesla.cost:
                             consts.Csound.play()
                             self.Tesla.buy = True
                             self.score -= self.Tesla.cost
-                            self.Tesla.cost *= 3
-                            self.autotesla += 5
+                            self.Tesla.cost *= consts.oi3
+                            self.autotesla += consts.i3
                             self.Tesla.cost = round(self.Tesla.cost, 0)
                         else:
                             self.Tesla.buy = False
-                    if x1 >= self.Army.x - self.Army.radius and x1 <= self.Army.x + self.Army.radius and y1 >= self.Army.y - self.Army.radius \
+                    if x1 >= self.Army.x - self.Army.radius and x1 <= self.Army.x + self.Army.radius \
+                            and y1 >= self.Army.y - self.Army.radius \
                             and y1 <= self.Army.y + self.Army.radius:
                         # print(x1, y1)
                         if self.score >= self.Army.cost:
                             consts.Asound.play()
                             self.Army.buy = True
                             self.score -= self.Army.cost
-                            self.Army.cost *= 4
-                            self.click *= 1.2
+                            self.Army.cost *= consts.ob1
+                            self.click *= consts.b1
                             self.Army.cost = round(self.Army.cost, 0)
                         else:
                             self.Army.buy = False
-                    if x1 >= self.Nato.x - self.Nato.radius and x1 <= self.Nato.x + self.Nato.radius and y1 >= self.Nato.y - self.Nato.radius \
+                    if x1 >= self.Nato.x - self.Nato.radius and x1 <= self.Nato.x + self.Nato.radius \
+                            and y1 >= self.Nato.y - self.Nato.radius \
                             and y1 <= self.Nato.y + self.Nato.radius:
                         # print(x1, y1)
                         if self.score >= self.Nato.cost:
                             consts.Nsound.play()
                             self.Nato.buy = True
                             self.score -= self.Nato.cost
-                            self.Nato.cost *= 7
-                            self.click *= 2
+                            self.Nato.cost *= consts.ob2
+                            self.click *= consts.b2
                             self.Nato.cost = round(self.Nato.cost, 0)
                         else:
                             self.Nato.buy = False
                     if x1 >= self.Sanction.x - self.Sanction.radius and x1 <= self.Sanction.x + self.Sanction.radius \
-                            and y1 >= self.Sanction.y - self.Sanction.radius and y1 <= self.Sanction.y + self.Sanction.radius:
+                            and y1 >= self.Sanction.y - self.Sanction.radius \
+                            and y1 <= self.Sanction.y + self.Sanction.radius:
                         # print(x1, y1)
                         if self.score >= self.Sanction.cost:
                             consts.Jsound.play()
                             self.Sanction.buy = True
                             self.score -= self.Sanction.cost
-                            self.Sanction.cost *= 10
-                            self.click *= 5
+                            self.Sanction.cost *= consts.ob3
+                            self.click *= consts.b3
                             self.Sanction.cost = round(self.Sanction.cost, 0)
                         else:
                             self.Sanction.buy = False
@@ -184,7 +189,8 @@ class Game:
                         self.Capitalist = 2
                     self.Capitalist = 1
                 if self.score >= consts.score and self.Capitalist >= consts.maxlvl:
-                    self.drawtext("America is proud of you!!!", consts.WHITE, consts.RED, consts.vicx, consts.vicy, consts.vicz)
+                    self.drawtext("America is proud of you!!!", consts.WHITE, consts.RED,
+                                  consts.vicx, consts.vicy, consts.vicz)
                     pygame.display.update()
             self.win.blit(consts.BG, (0, 0))
             self.Cookie.draw(self.win)
@@ -194,12 +200,18 @@ class Game:
             self.Tech.draw(self.win, self.Tech.cost)
             self.Nato.draw(self.win, self.Nato.cost)
             self.Sanction.draw(self.win, self.Sanction.cost)
-            self.drawtext("Money " + str(f'{self.score:.2f}') + " $", consts.WHITE, consts.GREEN, consts.monx, consts.mony, consts.monz)
-            self.drawtext("Income " + str(f'{self.income:.2f}') + " $", consts.WHITE, consts.BLUE, consts.incx, consts.incy, consts.incz)
-            self.drawtext("Working power " + str(f'{self.click:.2f}') + " $", consts.WHITE, consts.LIGHT, consts.worx, consts.wory, consts.worz)
-            self.drawtext("Capitalism LVL " + str(f'{self.Capitalist}'), consts.WHITE, consts.BLACK, consts.capx, consts.capy, consts.capz)
-            self.drawtext("Click or press Space to work", consts.BLUE, consts.WHITE, consts.cx, consts.cy, consts.cz)
-            self.drawtext("Player " + self.nick, consts.GREY, consts.WHITE, consts.px, consts.py, consts.pz)
+            self.drawtext("Money " + str(f'{self.score:.2f}') + " $", consts.WHITE, consts.GREEN,
+                          consts.monx, consts.mony, consts.monz)
+            self.drawtext("Income " + str(f'{self.income:.2f}') + " $", consts.WHITE,
+                          consts.BLUE, consts.incx, consts.incy, consts.incz)
+            self.drawtext("Working power " + str(f'{self.click:.2f}') + " $", consts.WHITE,
+                          consts.LIGHT, consts.worx, consts.wory, consts.worz)
+            self.drawtext("Capitalism LVL " + str(f'{self.Capitalist}'), consts.WHITE,
+                          consts.BLACK, consts.capx, consts.capy, consts.capz)
+            self.drawtext("Click or press Space to work", consts.BLUE, consts.WHITE,
+                          consts.cx, consts.cy, consts.cz)
+            self.drawtext("Player " + self.nick, consts.GREY, consts.WHITE,
+                          consts.px, consts.py, consts.pz)
             pygame.display.update()
         pygame.quit()
 
@@ -214,6 +226,3 @@ class Game:
         textRect = text.get_rect()
         textRect.center = (x, y)
         self.win.blit(text, textRect)
-
-
-
