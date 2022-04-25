@@ -1,53 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54c67c61-e2d3-46d8-ae11-aa42b9a6abfa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clicker.py" beforeDir="false" afterPath="$PROJECT_DIR$/clicker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/buttons.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/buttons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/saver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/RudolfArmy.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/RudolfDollar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/RudolfLVL.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/RudolfNato.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/RudolfSanction.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/RudolfTech.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/RudolfTesla.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/Rudolfautech.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/Rudolfautodollar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/Rudolfautotesla.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/Rudolfclick.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/Rudolfincome.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Rudolf/Rudolfscore.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/SurArmy.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/SurDollar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/SurLVL.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/SurNato.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/SurSanction.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/SurTech.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/SurTesla.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/Surautech.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/Surautodollar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/Surautotesla.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/Surclick.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/Surincome.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Sur/Surscore.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/SuroArmy.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/SuroDollar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/SuroLVL.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/SuroNato.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/SuroSanction.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/SuroTech.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/SuroTesla.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/Suroautech.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/Suroautodollar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/Suroautotesla.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/Suroclick.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/Suroincome.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/Suro/Suroscore.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="54c67c61-e2d3-46d8-ae11-aa42b9a6abfa" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,7 +145,7 @@
       <workItem from="1650784515170" duration="3076000" />
       <workItem from="1650793310319" duration="165000" />
       <workItem from="1650794304434" duration="15574000" />
-      <workItem from="1650815271484" duration="16436000" />
+      <workItem from="1650815271484" duration="16809000" />
     </task>
     <servers />
   </component>
@@ -213,6 +167,6 @@
     <SUITE FILE_PATH="coverage/python_code_review$mainclicker.coverage" NAME="buttons Coverage Results" MODIFIED="1650344776028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_code_review$workers.coverage" NAME="workers Coverage Results" MODIFIED="1650215895194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_code_review$constants.coverage" NAME="constants Coverage Results" MODIFIED="1650215901269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/python_code_review$clicker.coverage" NAME="clicker Coverage Results" MODIFIED="1650917488363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_code_review$clicker.coverage" NAME="clicker Coverage Results" MODIFIED="1650917511402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
