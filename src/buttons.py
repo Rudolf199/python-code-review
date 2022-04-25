@@ -4,8 +4,10 @@ font = pygame.font.SysFont("comicsans", 20)
 
 
 class Button:
-
+    # main button class, representing their common characteristics
     def __init__(self, picture, x, y, radius, color1, color2, deltax, deltay, dinamic):
+        # initialization with their picture, coordinates, color, and the dinamic coordinates for moving ,
+        # animation
         self.picture = picture
         self.x = x
         self.y = y
@@ -19,6 +21,7 @@ class Button:
         self.dinamic = dinamic + deltay
 
     def draw(self, win):
+        # drawing the button icon, and its "shadow"
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
         if self.pressed:
             win.blit(self.picture, (self.x - self.deltax, self.y - self.deltay))
@@ -27,6 +30,7 @@ class Button:
         self.clicked()
 
     def clicked(self):
+        # checking if mouse is clicked in the buttons area
         m = pygame.mouse.get_pos()[0]
         n = pygame.mouse.get_pos()[1]
         if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and \
@@ -43,8 +47,12 @@ class Button:
 
 
 class Work(Button):
-
+    '''
+    class of the main click button, "coockie", can also be pressed by space key, so the clicked method
+    needs to be changed
+    '''
     def clicked(self):
+        # click animation method
         m = pygame.mouse.get_pos()[0]
         n = pygame.mouse.get_pos()[1]
         if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and \
@@ -64,8 +72,9 @@ class Work(Button):
 
 
 class AutoMoney(Button):
-
-    def __init__(self, picture, x, y, radius, color1, color2, deltax, deltay, dinamic, text, cost):
+    # autocollectors class, has additional initialization parameters, so some  methods are redefined
+    def __init__(self, picture, x, y, radius, color1, color2, deltax, deltay, dinamic, text, cost,
+                 sound, income, overprice):
         self.picture = picture
         self.x = x  # координаты центров кругов
         self.y = y
@@ -80,9 +89,12 @@ class AutoMoney(Button):
         self.cost = cost
         self.text = text
         self.buy = False
+        self.income = income
+        self.sound = sound
+        self.over = overprice
 
     def draw(self, win, price):
-
+        # besides icon, it also needs a rectangle to be drawn on its right side, for its price representation
         txt = font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, ORANGE)
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
         pygame.draw.rect(win, self.color,
@@ -98,6 +110,7 @@ class AutoMoney(Button):
         self.clicked()
 
     def clicked(self):
+        # this buttons can be clicked, if user has enough money to buy this boosts
         m = pygame.mouse.get_pos()[0]
         n = pygame.mouse.get_pos()[1]
         if m >= self.x - self.radius and m <= self.x + self.radius and n >= self.y - self.radius and \
@@ -112,11 +125,27 @@ class AutoMoney(Button):
         else:
             self.color = self.color1
 
+    def play(self, score, automoney, x, y):
+        # button gameplay logic
+        if x >= self.x - self.radius and x <= self.x + self.radius and \
+                y >= self.y - self.radius and y <= self.y + self.radius:
+            # print(x1, y1)
+            if score >= self.cost:
+                self.sound.play()
+                self.buy = True
+                score -= self.cost
+                self.cost *= self.over
+                automoney += self.income
+                self.cost = round(self.cost, 0)
+            else:
+                self.buy = False
+        return automoney, score
+
 
 class Upgrade(AutoMoney):
-
+    # class of click boosts, inherited clicking logic, and init method from Automoney class
     def draw(self, win, price):
-
+        # they draw the price rectangle on its icons left side
         txt = font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, ORANGE)
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
         pygame.draw.rect(win, self.color,
@@ -131,3 +160,19 @@ class Upgrade(AutoMoney):
         else:
             win.blit(self.picture, (self.x - 1.3 * self.deltax, self.y - self.dinamic))
         self.clicked()
+
+    def play(self, score, click, x, y):
+        # button gameplay logic
+        if x >= self.x - self.radius and x <= self.x + self.radius and \
+                y >= self.y - self.radius and y <= self.y + self.radius:
+            # print(x1, y1)
+            if score >= self.cost:
+                self.sound.play()
+                self.buy = True
+                score -= self.cost
+                self.cost *= self.over
+                click *= self.income
+                self.cost = round(self.cost, 0)
+            else:
+                self.buy = False
+        return click, score

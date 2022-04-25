@@ -3,12 +3,16 @@ import os
 
 
 class Users:
+    # class users, printing users list before the game
     def __init__(self):
+        # checking if users directory exists, and printing if it does, not to make a error
         self.path = os.path.exists("./users")
         if self.path:
+            # if exists
             self.userlist = os.listdir('users')
             # print(userlist)
             for user in self.userlist:
+                # for each user from userlist (users are represented as subdirs in "users"
                 print(user)
                 print("Army: ", pickle.load(open(f"users/{user}/{user}Army.txt", "rb")))
                 print("AutoIT: ", pickle.load(open(f"users/{user}/{user}autech.txt", "rb")))
@@ -24,3 +28,4 @@ class Users:
                 print("Tech: ", pickle.load(open(f"users/{user}/{user}Tech.txt", "rb")))
                 print("Tesla: ", pickle.load(open(f"users/{user}/{user}Tesla.txt", "rb")))
                 print("###########\n")
+                # printing save data
