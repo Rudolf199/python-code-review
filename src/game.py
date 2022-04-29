@@ -11,26 +11,33 @@ class Game:
         # initializing all data it needs to run the game
         self.font = pygame.font.SysFont("comicsans", consts.mainfont)
         self.win = pygame.display.set_mode([consts.WIDTH, consts.HEIGHT])
-        self.Army = Upgrade(consts.ARMY, consts.RIGHT, consts.fh, consts.sr, consts.OLIVE,
-                            consts.LIGHT_OLIVE, consts.sr, consts.sd, consts.din, "Army sales ", consts.arp,
-                            consts.Asound, consts.b1, consts.ob1)
-        self.Tech = AutoMoney(consts.TECH, consts.LEFT, consts.fh, consts.sr,
-                              consts.ORANGE, consts.LIGHT_ORANGE, consts.sr, consts.sd, consts.din, "Invest in IT ",
-                              consts.itp, consts.Tsound, consts.i1, consts.oi1)
-        self.Dollar = AutoMoney(consts.DOLLAR, consts.LEFT, consts.sh, consts.sr,
-                                consts.LIGHT, consts.GREEN, consts.sr, consts.sd,
-                                consts.din, "Dollar expansion", consts.dp, consts.Dsound, consts.i2, consts.oi2)
-        self.Nato = Upgrade(consts.DEMO, consts.RIGHT, consts.sh,
-                            consts.sr, consts.DARK_BLUE, consts.BLUE, consts.sr, consts.sd, consts.din, "Democracy ",
-                            consts.dmp, consts.Nsound, consts.b3, consts.ob3)
-        self.Tesla = AutoMoney(consts.TESLA, consts.LEFT, consts.th, consts.sr, consts.WHITE,
-                               consts.LIGHT, consts.sr, consts.sd, consts.din, "Elecric cars ", consts.ep,
-                               consts.Tsound, consts.i3, consts.oi3)
-        self.Sanction = Upgrade(consts.SANC, consts.RIGHT, consts.th, consts.sr, consts.OLIVE,
-                                consts.LIGHT_RED, consts.sr, consts.sd, consts.din, "Sanctions ", consts.sp,
-                                consts.Jsound, consts.b2, consts.ob2)
-        self.Cookie = Work(consts.USA, consts.MIDDLE, consts.mh, consts.br,
-                           consts.LIME, consts.DARK_GREEN, consts.br, consts.bd, consts.din)
+        self.Army = Upgrade(consts.ARMY, consts.RIGHT, consts.first_height, consts.small_radius,
+                            consts.OLIVE, consts.LIGHT_OLIVE, consts.small_radius, consts.small_delta,
+                            consts.din, "Army sales ", consts.army_price, consts.Asound,
+                            consts.b1, consts.ob1)
+        self.Tech = AutoMoney(consts.TECH, consts.LEFT, consts.first_height, consts.small_radius,
+                              consts.ORANGE, consts.LIGHT_ORANGE, consts.small_radius,
+                              consts.small_delta, consts.din, "Invest in IT ", consts.it_price, consts.Tsound,
+                              consts.i1, consts.oi1)
+        self.Dollar = AutoMoney(consts.DOLLAR, consts.LEFT, consts.second_height, consts.small_radius,
+                                consts.LIGHT, consts.GREEN, consts.small_radius, consts.small_delta,
+                                consts.din, "Dollar expansion", consts.dollar_price, consts.Dsound,
+                                consts.i2, consts.oi2)
+        self.Nato = Upgrade(consts.DEMO, consts.RIGHT, consts.second_height, consts.small_radius,
+                            consts.DARK_BLUE, consts.BLUE, consts.small_radius, consts.small_delta,
+                            consts.din, "Democracy ", consts.democracy_price, consts.Nsound,
+                            consts.b3, consts.ob3)
+        self.Tesla = AutoMoney(consts.TESLA, consts.LEFT, consts.third_height, consts.small_radius,
+                               consts.WHITE, consts.LIGHT, consts.small_radius, consts.small_delta,
+                               consts.din, "Elecric cars ", consts.electro_price, consts.Tsound,
+                               consts.i3, consts.oi3)
+        self.Sanction = Upgrade(consts.SANC, consts.RIGHT, consts.third_height, consts.small_radius,
+                                consts.OLIVE, consts.LIGHT_RED, consts.small_radius, consts.small_delta,
+                                consts.din, "Sanctions ", consts.sanction_price, consts.Jsound,
+                                consts.b2, consts.ob2)
+        self.Cookie = Work(consts.USA, consts.MIDDLE, consts.middle_height, consts.big_radius,
+                           consts.LIME, consts.DARK_GREEN, consts.big_radius, consts.big_delta,
+                           consts.din)
         # Create the player
         self.player = Saver(".txt", "users", nick)
         self.run = True
@@ -42,24 +49,22 @@ class Game:
         self.click = self.player.load_game_data([self.nick + "click"], [1])
         self.Capitalist = self.player.load_game_data([self.nick + "LVL"], [0])
         self.score = self.player.load_game_data([self.nick + "score"], [0])
-        self.Nato.cost = self.player.load_game_data([self.nick + "Nato"], [consts.dmp])
-        self.Tesla.cost = self.player.load_game_data([self.nick + "Tesla"], [consts.ep])
-        self.Tech.cost = self.player.load_game_data([self.nick + "Tech"], [consts.itp])
-        self.Army.cost = self.player.load_game_data([self.nick + "Army"], [consts.arp])
-        self.Dollar.cost = self.player.load_game_data([self.nick + "Dollar"], [consts.dp])
-        self.Sanction.cost = self.player.load_game_data([self.nick + "Sanction"], [consts.sp])
+        self.Nato.cost = self.player.load_game_data([self.nick + "Nato"], [consts.democracy_price])
+        self.Tesla.cost = self.player.load_game_data([self.nick + "Tesla"], [consts.electro_price])
+        self.Tech.cost = self.player.load_game_data([self.nick + "Tech"], [consts.it_price])
+        self.Army.cost = self.player.load_game_data([self.nick + "Army"], [consts.army_price])
+        self.Dollar.cost = self.player.load_game_data([self.nick + "Dollar"], [consts.dollar_price])
+        self.Sanction.cost = self.player.load_game_data([self.nick + "Sanction"], [consts.sanction_price])
 
     def savegame(self):
         # this method saves progress of player, in files of following style nick + "data"
         self.player.save_game_data([self.income, self.autech, self.autodollar, self.autotesla, self.click,
-                                    self.Capitalist, self.score,
-                                    self.Nato.cost, self.Tesla.cost,
+                                    self.Capitalist, self.score, self.Nato.cost, self.Tesla.cost,
                                     self.Army.cost, self.Tech.cost, self.Sanction.cost, self.Dollar.cost],
                                    [self.nick + "income", self.nick + "autech", self.nick + "autodollar",
-                                    self.nick + "autotesla",
-                                    self.nick + "click", self.nick + "LVL", self.nick + "score", self.nick + "Nato",
-                                    self.nick + "Tesla", self.nick + "Army",
-                                    self.nick + "Tech", self.nick + "Sanction", self.nick + "Dollar"])
+                                    self.nick + "autotesla", self.nick + "click", self.nick + "LVL", self.nick + "score",
+                                    self.nick + "Nato", self.nick + "Tesla", self.nick + "Army", self.nick + "Tech",
+                                    self.nick + "Sanction", self.nick + "Dollar"])
 
     def process_events(self):
         # game events loop
@@ -110,11 +115,11 @@ class Game:
                 if self.income > consts.income3:
                     if self.income > consts.income4:
                         if self.income > consts.income5:
-                            self.Capitalist = 5
-                        self.Capitalist = 4
-                    self.Capitalist = 3
-                self.Capitalist = 2
-            self.Capitalist = 1
+                            self.Capitalist = consts.caplvl5
+                        self.Capitalist = consts.caplvl4
+                    self.Capitalist = consts.caplvl3
+                self.Capitalist = consts.caplvl2
+            self.Capitalist = consts.caplvl1
         if self.score >= consts.score and self.Capitalist >= consts.maxlvl:
             self.drawtext("America is proud of you!!!", consts.WHITE, consts.RED,
                           consts.vicx, consts.vicy, consts.vicz)
@@ -131,18 +136,18 @@ class Game:
         self.Tech.draw(self.win, self.Tech.cost)
         self.Nato.draw(self.win, self.Nato.cost)
         self.Sanction.draw(self.win, self.Sanction.cost)
-        self.drawtext("Money " + str(f'{self.score:.2f}') + " $", consts.WHITE, consts.GREEN,
-                      consts.monx, consts.mony, consts.monz)
+        self.drawtext("Money " + str(f'{self.score:.2f}') + " $", consts.WHITE,
+                      consts.GREEN, consts.monx, consts.mony, consts.monz)
         self.drawtext("Income " + str(f'{self.income:.2f}') + " $", consts.WHITE,
                       consts.BLUE, consts.incx, consts.incy, consts.incz)
         self.drawtext("Working power " + str(f'{self.click:.2f}') + " $", consts.WHITE,
                       consts.LIGHT, consts.worx, consts.wory, consts.worz)
         self.drawtext("Capitalism LVL " + str(f'{self.Capitalist}'), consts.WHITE,
                       consts.BLACK, consts.capx, consts.capy, consts.capz)
-        self.drawtext("Click or press Space to work", consts.BLUE, consts.WHITE,
-                      consts.cx, consts.cy, consts.cz)
-        self.drawtext("Player " + self.nick, consts.GREY, consts.WHITE,
-                      consts.px, consts.py, consts.pz)
+        self.drawtext("Click or press Space to work", consts.BLUE,
+                      consts.WHITE, consts.cx, consts.cy, consts.cz)
+        self.drawtext("Player " + self.nick, consts.GREY,
+                      consts.WHITE, consts.px, consts.py, consts.pz)
         pygame.display.update()
 
     def autominer(self):

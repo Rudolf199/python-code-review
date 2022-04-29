@@ -1,24 +1,26 @@
 import pygame as pygame
 
 pygame.init()
+fsize = 20
+font = pygame.font.SysFont("comicsans", fsize)
 LEFT = 42
 MIDDLE = 540
 RIGHT = 1030
-fh = 100
-sh = 250
-th = 400
-mh = 300
-sr = 35
-br = 145
+first_height = 100
+second_height = 250
+third_height = 400
+middle_height = 300
+small_radius = 35
+big_radius = 145
 din = 10
-sd = 37
-bd = 177
-arp = 200
-itp = 50
-dp = 100
-dmp = 600
-ep = 400
-sp = 300
+small_delta = 37
+big_delta = 177
+army_price = 200
+it_price = 50
+dollar_price = 100
+democracy_price = 600
+electro_price = 400
+sanction_price = 300
 maxscore = 10000000000000
 maxlvl = 5
 income1 = 10
@@ -94,11 +96,13 @@ autech = 0
 autodollar = 0
 autotesla = 0
 Capitalist = 0
+'''
 a = 0
 b = 0
 c = 0
 d = 0
 e = 0
+'''
 score = 0
 income = 0
 FPS = 30
@@ -107,15 +111,26 @@ b1 = 1.2
 b2 = 2
 b3 = 5
 ob1 = 4
-ob2 = 7
+ob2 = 7  # overprice boost 2
 ob3 = 10
-
+caplvl1 = 1
+caplvl2 = 2
+caplvl3 = 3
+caplvl4 = 4
+caplvl5 = 5
 
 i1 = 0.5
 oi1 = 1.5
 i2 = 2
-oi2 = 2
+oi2 = 2  # overprice income 2
 i3 = 5
 oi3 = 3
-ins = [i1, i2, i3]
-ovs = [oi1, oi2, oi3]
+rect_delta_x1 = 35
+rect_delta_x2 = 15
+rect_delta_y1 = 20
+rect_delta_x11 = 30
+rect_delta_x22 = 7
+rect_delta = 5
+rect_delta_y2 = 10
+rect_delta_y22 = 25
+rect_corr = 1.3
