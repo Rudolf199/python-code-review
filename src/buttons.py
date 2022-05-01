@@ -95,14 +95,14 @@ class AutoMoney(Button):
 
     def draw(self, win, price):
         # besides icon, it also needs a rectangle to be drawn on its right side, for its price representation
-        txt = consts.font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, consts.ORANGE)
+        txt = consts.font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, consts.orange)
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
-        pygame.draw.rect(win, self.color,
-                         [self.x + self.radius + consts.rect_delta_y1, self.y - self.radius, txt.get_width()
-                          + consts.rect_delta_x2, txt.get_height() + consts.rect_delta_y1])
-        pygame.draw.rect(win, consts.BLACK,
-                         [self.x + self.radius + consts.rect_delta_y22, self.y - self.radius + consts.rect_delta,
-                          txt.get_width() + consts.rect_delta_x22, txt.get_height() + consts.rect_delta_y2])
+        big_rect = [self.x + self.radius + consts.rect_delta_y22, self.y - self.radius + consts.rect_delta,
+                    txt.get_width() + consts.rect_delta_x22, txt.get_height() + consts.rect_delta_y2]
+        small_rect = [self.x + self.radius + consts.rect_delta_y1, self.y - self.radius, txt.get_width()
+                      + consts.rect_delta_x2, txt.get_height() + consts.rect_delta_y1]
+        pygame.draw.rect(win, self.color, small_rect)
+        pygame.draw.rect(win, consts.black, big_rect)
         win.blit(txt, (self.x + self.radius + consts.rect_delta_x11, self.y - consts.rect_delta_x11))
         if self.pressed:
             win.blit(self.picture, (self.x - self.deltax, self.y - self.deltay))
@@ -147,18 +147,18 @@ class Upgrade(AutoMoney):
     # class of click boosts, inherited clicking logic, and init method from Automoney class
     def draw(self, win, price):
         # they draw the price rectangle on its icons left side
-        txt = consts.font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, consts.ORANGE)
+        txt = consts.font.render(self.text + '(' + str(f'{price:.2f}') + " $" + ')', True, consts.orange)
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
-        pygame.draw.rect(win, self.color,
-                         [self.x - self.radius - consts.rect_delta_x1 -
-                          txt.get_width(), self.y - self.radius,
-                          txt.get_width() + consts.rect_delta_x2,
-                          txt.get_height() + consts.rect_delta_y1])
-        pygame.draw.rect(win, consts.BLACK,
-                         [self.x - self.radius - consts.rect_delta_x11 -
-                          txt.get_width(), self.y - self.radius + consts.rect_delta,
-                          txt.get_width() + consts.rect_delta_x22,
-                          txt.get_height() + consts.rect_delta_y2])
+        small_rect2 = [self.x - self.radius - consts.rect_delta_x1 -
+                       txt.get_width(), self.y - self.radius,
+                       txt.get_width() + consts.rect_delta_x2,
+                       txt.get_height() + consts.rect_delta_y1]
+        big_rect2 = [self.x - self.radius - consts.rect_delta_x11 -
+                     txt.get_width(), self.y - self.radius + consts.rect_delta,
+                     txt.get_width() + consts.rect_delta_x22,
+                     txt.get_height() + consts.rect_delta_y2]
+        pygame.draw.rect(win, self.color, small_rect2)
+        pygame.draw.rect(win, consts.black, big_rect2)
         win.blit(txt, (self.x - self.radius - consts.rect_delta_x11 -
                        txt.get_width(), self.y - consts.rect_delta_x11))
         if self.pressed:
