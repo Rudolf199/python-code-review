@@ -35,25 +35,27 @@ If you are using the SSH protocol, ensure your public key is in Bitbucket and lo
 ```
 ###**Clone over HTTPS**
 ```
-$ git clone https://username@bitbucket.org/teamsinspace/documentation-tests.git
+ git clone https://github.com/Rudolf199/python-code-review.git
+    then type following to open repository
+    cd python-code-review
+    
 ```
 -------
 
 ```
 🟢step 2) you should install python3 and pip3 command
-  $sudo apt update
-  $sudo apt install python3-pip
+  sudo apt update
+  sudo apt install python3-pip
 ```
 
-![pip.png](images/pip.png)
 
 -------
 ###
 ```
 🟢step 3) now to build the project you need to insall pygame module
-            $python3 -m pip install -U pygame --user
+            python3 -m pip install -U pygame --user
 ```
-![pygame.png](images/pygameinst.png)
+
 
 --------
 ##
@@ -61,7 +63,7 @@ $ git clone https://username@bitbucket.org/teamsinspace/documentation-tests.git
 🟢step 4) run clickers game
 
 
-      $python3 clicker.py
+      python3 clicker.py
       
       after type your nickname in terminal and start playing
 ```
